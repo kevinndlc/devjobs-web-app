@@ -12,6 +12,7 @@ export default <Partial<Config>>{
       'light-grey': 'hsl(210, 22%, 96%)',
       grey: 'hsl(212, 23%, 69%)',
       'dark-grey': 'hsl(214, 17%, 51%)',
+      transparent: 'transparent',
     },
   },
 };
