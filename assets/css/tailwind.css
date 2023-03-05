@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .wrapper {
+    --wrapper-max-width: 1110px;
+    --wrapper-padding: 1.5rem;
+
+    width: min(100% - 2 * var(--wrapper-padding), var(--wrapper-max-width));
+    margin-inline: auto;
+
+    @media (min-width: 640px) {
+      --wrapper-padding: 2.5rem;
+    }
+  }
+}

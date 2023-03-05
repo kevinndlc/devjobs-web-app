@@ -5,4 +5,8 @@ export default defineNuxtConfig({
   },
 
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt'],
+
+  tailwindcss: {
+    exposeConfig: true
+  },
 });
