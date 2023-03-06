@@ -15,4 +15,5 @@ export default <Partial<Config>>{
       transparent: 'transparent',
     },
   },
+  plugins: [require('@tailwindcss/forms'),],
 };
