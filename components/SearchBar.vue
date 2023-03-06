@@ -55,8 +55,8 @@ const showFilterModal = ref(false);
         v-model="locationModel"
       />
     </div>
-    <div class="h-full flex items-center shrink-0">
-      <label class="group ml-5 hidden sm:inline font-bold cursor-pointer">
+    <div class="h-full flex items-center shrink-0 pl-5">
+      <label class="group hidden sm:inline font-bold cursor-pointer">
         <input type="checkbox" class="w-6 h-6 /10 bg-very-dark-blue/10 dark:bg-white/10 group-hover:bg-light-violet/25 checked:!bg-violet group-hover:checked:bg-violet transition-colors rounded-[3px] border-none mr-4  cursor-pointer" />
         Full time<span class="hidden lg:inline"> Only</span>
       </label>
