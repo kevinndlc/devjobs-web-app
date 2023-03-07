@@ -12,7 +12,7 @@ defineProps<{
       <img :src="job.logo" />
     </div>
     <p class="text-dark-grey">{{ job.postedAt }} • {{ job.contract }}</p>
-    <h2 class="my-4">{{ job.position }}</h2>
+    <h2 class="my-4 text-lg font-bold">{{ job.position }}</h2>
     <h3 class="text-dark-grey mb-10">{{ job.company }}</h3>
     <strong class="text-sm text-violet">{{ job.location }}</strong>
   </button>

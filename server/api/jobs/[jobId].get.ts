@@ -6,7 +6,7 @@ jobs as Job[];
 export default defineEventHandler(async event => {
   const params = event.context.params as { jobId: string }
 
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   return jobs.find(job => job.id === Number(params.jobId))
 })
