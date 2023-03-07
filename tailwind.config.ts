@@ -3,6 +3,9 @@ import type { Config } from 'tailwindcss';
 export default <Partial<Config>>{
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      kumbh: ['"Kumbh Sans"', 'sans-serif'],
+    },
     colors: {
       violet: 'hsl(235, 69%, 61%)',
       'light-violet': 'hsl(235, 82%, 77%)',

@@ -9,9 +9,16 @@ defineProps<{
 
 <template>
   <ul class="job-container">
-    <li v-for="job in jobs" :key="job.id">
-      <JobListItem :job="job" @click="() => navigateTo(`/${job.id}`)" />
-    </li>
+    <template v-if="pending">
+      <li v-for="i in 6" :key="i">
+        <JobListItemSkeleton />
+      </li>
+    </template>
+    <template v-else-if="jobs">
+      <li v-for="job in jobs" :key="job.id">
+        <JobListItem :job="job" @click="() => navigateTo(`/${job.id}`)" />
+      </li>
+    </template>
   </ul>
 </template>
 

@@ -4,11 +4,14 @@ import { breakpointsTailwind } from '@vueuse/core';
 const props = defineProps<{
   search?: string;
   location?: string;
+  fullTime?: boolean;
 }>();
 
 const emit = defineEmits<{
   (e: 'update:search', value: string): void;
   (e: 'update:location', value: string): void;
+  (e: 'update:fullTime', value: boolean): void;
+  (e: 'search'): void;
 }>();
 
 const searchModel = computed({
@@ -21,6 +24,11 @@ const locationModel = computed({
   set: (value) => emit('update:location', value),
 });
 
+const fullTimeModel = computed({
+  get: () => props.fullTime ?? false,
+  set: (value) => emit('update:fullTime', value),
+});
+
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const isDesktopOrWider = breakpoints.greaterOrEqual('lg');
 
@@ -28,8 +36,9 @@ const showFilterModal = ref(false);
 </script>
 
 <template>
-  <div
+  <form
     class="h-20 bg-white dark:bg-very-dark-blue transition-colors rounded-md overflow-hidden flex items-center pr-4"
+    @submit.prevent="emit('search')"
   >
     <div class="relative h-full flex-grow-[2]">
       <IconSearch class="hidden sm:block absolute top-1/2 left-6 -translate-y-1/2 text-violet pointer-events-none" />
@@ -57,18 +66,22 @@ const showFilterModal = ref(false);
     </div>
     <div class="h-full flex items-center shrink-0 pl-5">
       <label class="group hidden sm:inline font-bold cursor-pointer">
-        <input type="checkbox" class="w-6 h-6 /10 bg-very-dark-blue/10 dark:bg-white/10 group-hover:bg-light-violet/25 checked:!bg-violet group-hover:checked:bg-violet transition-colors rounded-[3px] border-none mr-4  cursor-pointer" />
+        <input type="checkbox" class="w-6 h-6 /10 bg-very-dark-blue/10 dark:bg-white/10 group-hover:bg-light-violet/25 checked:!bg-violet group-hover:checked:bg-violet transition-colors rounded-[3px] border-none mr-4 cursor-pointer" v-model="fullTimeModel" />
         Full time<span class="hidden lg:inline"> Only</span>
       </label>
-      <button class="sm:hidden" @click="showFilterModal = true">
+      <button type="button" class="sm:hidden" @click="showFilterModal = true">
         <IconFilter class="text-dark-grey dark:text-white" />
       </button>
-      <button class="h-12 ml-6 sm:ml-7 px-3.5 lg:px-9 bg-violet rounded-[5px] text-white">
+      <button class="h-12 ml-6 sm:ml-7 px-3.5 lg:px-9 bg-violet rounded-[5px] text-white hover:bg-light-violet focus:bg-light-violet transition-colors focus:outline-none">
         <IconSearch class="sm:hidden" />
         <strong class="hidden sm:inline">Search</strong>
       </button>
     </div>
 
-    <FilterModal :show="showFilterModal" @close="showFilterModal = false" />
-  </div>
+    <FilterModal :show="showFilterModal" 
+    v-model:location="locationModel"
+    v-model:full-time="fullTimeModel"
+    @close="showFilterModal = false"
+    @search="emit('search')" />
+  </form>
 </template>
